@@ -31,6 +31,7 @@ class Calculator {
             this.compute();
         }
         this.operation = operation;
+        this.lastOperation = operation;
         this.previousOperand = this.currentOperand;
         this.currentOperand = "";
 
@@ -38,10 +39,12 @@ class Calculator {
 
     compute(){
         let computation;
+        let activeOperation = this.operation;
+        if(activeOperation === undefined) activeOperation = this.lastOperation;
         const PREV = parseFloat(this.previousOperand);
         const CURR = parseFloat(this.currentOperand);
         if(isNaN(PREV) || isNaN(CURR)) return;
-        switch (this.operation){
+        switch (activeOperation){
             case "+":
                 computation = PREV + CURR;
                 break;
@@ -57,9 +60,9 @@ class Calculator {
             default:
                 return;
         }
+        this.previousOperand = this.currentOperand;
         this.currentOperand = computation;
         this.operation = undefined;
-        this.previousOperand = "";
     }
 
     getDisplayNumber(number){
@@ -81,10 +84,10 @@ class Calculator {
 
     updateDisplay(){
         this.CURR_OPERAND_TEXT.innerText = this.getDisplayNumber(this.currentOperand);
-        if(this.operation != null){
-            this.PREV_OPERAND_TEXT.innerText = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
+        if(this.operation === undefined){
+            this.PREV_OPERAND_TEXT.innerText = `${this.getDisplayNumber(this.previousOperand)}`;
         }else{
-            this.PREV_OPERAND_TEXT.innerText = "";
+            this.PREV_OPERAND_TEXT.innerText = `${this.getDisplayNumber(this.previousOperand)} ${this.operation}`;
         }
     }
 }
