@@ -3,20 +3,25 @@
 *, *::before, *::after {
     box-sizing: border-box;
     font-family: "Varela Round", sans-serif;
-    font-weight: normal;
+    font-weight: bold;
 }
 
 body {
     padding: 0;
     margin: 0;
     background: linear-gradient(to bottom, black,green);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    align-items: center;
+    min-height: 100vh;
 }
 
 .calculator-grid {
     display: grid;
     justify-content: center;
     align-content: center;
-    min-height: 100vh;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
@@ -24,26 +29,36 @@ body {
 .calculator-grid > button {
     font-size: 2rem;
     border: 1px solid white;
+    box-shadow: 0 0 10px #9ecaed;
     outline: none;
     background-color: rgba(255,255,255,.75);
+    transition-duration: 300ms;
 }
 
 .calculator-grid > button:hover {
     background-color: rgba(255,255,255,.80);
+    font-size: 2.2rem;
+    transition-duration: 300ms;
+    cursor:cell;
 }
 
 .span-two {
     grid-column: span 2;
 }
 
+.calculator-grid > .operator {
+    background-color: rgba(123, 187, 44, 0.75);
+}
+
 .output {
     grid-column: 1/-1;
     background-color: rgba(11, 11, 11, 0.60);
     border: 1px solid rgba(255, 255, 255, 0.80);
+    box-shadow: 0 0 20px #9ecaed;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
     padding: 10px;
     word-wrap: break-word;
     word-break: break-all;
@@ -56,5 +71,15 @@ body {
 
 .output .current-operand {
     color: white;
-    font-size: 2.5rem;
+    font-size: 3rem;
+}
+
+.header {
+    color: white;
+    font-size: 4rem;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }

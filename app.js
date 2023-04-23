@@ -37,7 +37,7 @@ class Calculator {
 
     }
 
-    compute(){
+    operate(){
         let computation;
         let activeOperation = this.operation;
         if(activeOperation === undefined) activeOperation = this.lastOperation;
@@ -117,7 +117,7 @@ OPERATION_BTNS.forEach(btn => {
 })
 
 EQUALS_BTN.addEventListener("click",button => {
-    CALCULATOR.compute();
+    CALCULATOR.operate();
     CALCULATOR.resultDisplayed = true;
     CALCULATOR.updateDisplay();
 })
