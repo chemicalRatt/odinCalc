@@ -61,7 +61,7 @@ class Calculator {
                 return;
         }
         this.previousOperand = this.currentOperand;
-        this.currentOperand = computation;
+        this.currentOperand = Math.round(computation*100)/100;
         this.operation = undefined;
     }
 
