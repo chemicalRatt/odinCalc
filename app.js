@@ -2,6 +2,7 @@ class Calculator {
     constructor(PREV_OPERAND_TEXT,CURR_OPERAND_TEXT){
         this.PREV_OPERAND_TEXT = PREV_OPERAND_TEXT;
         this.CURR_OPERAND_TEXT = CURR_OPERAND_TEXT;
+        this.resultDisplayed = false;
         this.clear();
     }
 
@@ -16,6 +17,10 @@ class Calculator {
     }
 
     appendNumber(number){
+        if(this.resultDisplayed === true && this.operation === undefined){
+            this.clear();
+            this.resultDisplayed = false;
+        }
         if(number === "." && this.currentOperand.includes(".")) return;
         this.currentOperand = this.currentOperand.toString() + number.toString();
     }
@@ -110,6 +115,7 @@ OPERATION_BTNS.forEach(btn => {
 
 EQUALS_BTN.addEventListener("click",button => {
     CALCULATOR.compute();
+    CALCULATOR.resultDisplayed = true;
     CALCULATOR.updateDisplay();
 })
 
